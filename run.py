@@ -1,7 +1,10 @@
 import requests
-from os import getenv
+import pathlib
+from os import path, getenv, remove
 from bs4 import BeautifulSoup
 
+
+PATH_LOCKFILE = 'files/lock'
 
 def send_line_notify(notification_message):
     """
@@ -31,9 +34,14 @@ def has_stocks():
 
 def main():
     if has_stocks():
-        send_line_notify('在庫があるよ！')
+        if not path.exists(PATH_LOCKFILE):
+            send_line_notify('在庫があるよ！')
+            pathlib.Path(PATH_LOCKFILE).touch()
     else:
-        send_line_notify('在庫がないよ')
+        # send_line_notify('在庫がないよ')
+        if path.exists(PATH_LOCKFILE): remove(PATH_LOCKFILE)
+
+
 
 
 if __name__ == "__main__":
