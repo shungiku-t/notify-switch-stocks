@@ -16,6 +16,9 @@ def send_line_notify(notification_message):
     requests.post(line_notify_api, headers = headers, data = data)
 
 def has_stocks():
+    """
+    マイ任天堂ストアにてSwitchの在庫があるか否かを真偽値で返す
+    """
     res = requests.get('https://store-jp.nintendo.com/customize/switch/')
     soup = BeautifulSoup(res.text, 'html.parser')
 

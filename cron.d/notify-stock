@@ -1,4 +1,4 @@
 SHELL=/bin/bash
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
 MAILTO=""
-*/1 * * * * root python /usr/local/notifyapp/run.py 2>&1 /var/log/cron.log
+*/1	*	*	*	*	python /usr/local/notifyapp/run.py >> /var/log/cron.log 2>&1
