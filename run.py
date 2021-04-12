@@ -3,8 +3,8 @@ import pathlib
 from os import path, getenv, remove
 from bs4 import BeautifulSoup
 
-
-PATH_LOCKFILE = 'files/lock'
+BASE_DIR = pathlib.Path(__file__).parent
+PATH_LOCKFILE = path.join(BASE_DIR, 'files/lock')
 
 def send_line_notify(notification_message):
     """
@@ -40,8 +40,6 @@ def main():
     else:
         # send_line_notify('在庫がないよ')
         if path.exists(PATH_LOCKFILE): remove(PATH_LOCKFILE)
-
-
 
 
 if __name__ == "__main__":
