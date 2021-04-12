@@ -25,12 +25,12 @@ def has_stocks():
     res = requests.get('https://store-jp.nintendo.com/customize/switch/')
     soup = BeautifulSoup(res.text, 'html.parser')
 
-    state = soup.select_one('div.productDetailSwitchCustomize--detail em').text
+    state = soup.select_one('dl.productDetailSwitchCustomize--detail__dlText dd').text
 
-    if state == '品切れ':
-        return False
-    else:
+    if state == '○':
         return True
+    else:
+        return False
 
 def main():
     if has_stocks():
